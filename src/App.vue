@@ -31,6 +31,7 @@ export default {
             store.loading = false;
         })
         .catch(err =>{
+            store.loading = true;
             console.log(err)
         })
     }
