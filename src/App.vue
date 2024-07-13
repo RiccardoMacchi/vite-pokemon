@@ -34,7 +34,22 @@ export default {
             store.loading = true;
             console.log(err)
         })
-    }
+    },
+    requestNewPokemon(){
+      let newPokemon = "https://api.pokemontcg.io/v2/cards?q=name:" + store.newSearch
+      store.loading = true;
+      axios.get(newPokemon)
+        .then(function(response){
+            console.log("immagine url",response.data.data[0].images.small)
+            console.log(response.data.data)
+            store.pokemons = response.data.data;
+            store.loading = false;
+        })
+        .catch(err =>{
+            store.loading = true;
+            console.log(err)
+        })
+    },
   },
   created(){
     this.requestPokemon()
@@ -46,7 +61,7 @@ export default {
   <AppLoading />
   <AppHeader />
   <main>
-    <AppSearch />
+    <AppSearch @search="requestNewPokemon"/>
     <AppWrapCard />
   </main>
 </template>

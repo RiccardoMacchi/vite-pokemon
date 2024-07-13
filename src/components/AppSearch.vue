@@ -14,7 +14,8 @@ export default{
 <template>
     <div class="container">
         <label for="">Cerca il tuo Pok&eacute;m&oacute;n</label>
-        <input type="text" v-model="store.newSearch">
+        <input type="text" v-model="store.newSearch" @keyup.enter="$emit('search')">
+
     </div>
 </template>
 
